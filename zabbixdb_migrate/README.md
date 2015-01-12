@@ -3,6 +3,7 @@ db_migrate for zabbix  from mysql 5.5 with innodb  to   Percona-Server 5.6 with 
 *   2.系统装好 done 
 *   3.文件系统改成xfs  done 
 *   4.数据库安装 引擎弄好 done  这里选择如下:
+
     ``[root@test procedure]# rpm -qa |grep -iE 'mysql|percona|toku'
     Percona-Server-server-56-5.6.21-rel70.1.el6.x86_64
     percona-release-0.1-3.noarch
@@ -17,6 +18,7 @@ db_migrate for zabbix  from mysql 5.5 with innodb  to   Percona-Server 5.6 with 
     *   A.表结构 zabbix_init.sql
     *   B.存储过程 produce.sql 
     *   C.run.sh 主要执行脚本 time sh -x run.sh
+
     基本的思路：
     *   1.主库运行
     *   2.在新的机器上执行 sh -x run.sh 
