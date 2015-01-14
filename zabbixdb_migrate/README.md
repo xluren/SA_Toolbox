@@ -33,3 +33,13 @@ db_migrate for zabbix  from mysql 5.5 with innodb  to   Percona-Server 5.6 with 
     *   2.老库变从库
     *   3.增加proxy,所有的读操作打到老库上面，所有的写操作到主库上面
     *   4.这样不影响原始数据的读操作;同时服务影响时间最小。
+
+refer to http://imysql.cn/2014/06/24/migrate-zabbix-db-to-tokudb.shtml
+
+注意点：修改内核配置，禁用transparent_hugepage，不关闭的话可能会导致TokuDB内存泄露（建议写到 /etc/rc.local 中，重启后仍可生效）
+```
+echo never > /sys/kernel/mm/redhat_transparent_hugepage/defrag
+echo never > /sys/kernel/mm/redhat_transparent_hugepage/enabled
+echo never > /sys/kernel/mm/transparent_hugepage/enabled
+echo never > /sys/kernel/mm/transparent_hugepage/defrag
+```
